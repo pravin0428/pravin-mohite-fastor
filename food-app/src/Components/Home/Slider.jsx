@@ -32,21 +32,21 @@ export default function Slider() {
       >
         <SwiperSlide>
           <Image
-            src="https://thumbs.dreamstime.com/z/hard-work-concept-tired-man-holding-many-boxes-hands-over-brick-wall-hard-work-concept-tired-man-holding-many-boxes-hands-212290434.jpg"
+            src="https://www.treebo.com/blog/wp-content/uploads/2023/09/Header-7.jpg"
             alt="banner2"
             style={imageStyle}
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="https://th.bing.com/th/id/R.76fc452da5c43dfd56d5ecb16d2bfaee?rik=O3qywCkjVryi5Q&riu=http%3a%2f%2fcitywestshoppingcentre.com%2fapp%2fuploads%2f2017%2f04%2fWoman-Shopping-Banner.jpg&ehk=f51KA0DgiwyUWBfb1HSSlawurrqZaQVx%2fMpZlmiBwy8%3d&risl=&pid=ImgRaw&r=0"
+            src="https://image.freepik.com/vector-gratis/banner-horizontal-restaurante-hamburguesas_23-2148608944.jpg"
             alt="banner3"
             style={imageStyle}
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="https://th.bing.com/th/id/R.0ab6e848a8395fe4e95572437a644b0a?rik=AJSrU%2fNrEmp1Tw&riu=http%3a%2f%2fwww.istmagazine.com%2fwp-content%2fuploads%2f2017%2f07%2froadnotes-01-082017.jpg&ehk=XOQkxoF%2fZla97zYzRWsTGP9xZXDKf1ZYnTILxdKActc%3d&risl=&pid=ImgRaw&r=0"
+            src="https://graphicsfamily.com/wp-content/uploads/edd/2021/07/Fresh-and-healthy-vegetables-banner-design-template-download-scaled.jpg"
             alt="banner3"
             style={imageStyle}
           />

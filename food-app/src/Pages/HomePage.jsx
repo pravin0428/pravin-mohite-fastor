@@ -1,40 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Slider from '../Components/Home/Slider';
+import { Box, Text } from "@chakra-ui/react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function HomePage() {
-  const [foods, setFoods] = useState([]);
+import CardCompToDis from "../Components/Home/CardCompToDis";
+import Slider from "../Components/Home/Slider";
+
+const HomePage = () => {
+  const nav = useNavigate();
+  const token = localStorage.getItem("FastorToken");
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Make a GET request to fetch food data from Open Food Facts API
-    axios.get('https://world.openfoodfacts.org/api/v0/product/737628064502.json')
-      .then(response => {
-        // Assuming the response.data is an array of food objects
-        console.log(response);
-        // Here, you may want to extract relevant food data from the Open Food Facts API response
-        setFoods(response.data.product);
-      })
-      .catch(error => {
-        console.error('Error fetching food data:', error);
-      });
-  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          };
+          const response = await axios.get(
+            "https://staging.fastor.in/v1/m/restaurant?city_id=118&&",
+            config
+          );
+          setData(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [token]);
 
   return (
-    <div>
+    <>
       <Slider />
-      <div>
-        <h2>Food Products</h2>
-        {foods && (
-          <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
-            <h3>{foods.product_name}</h3>
-            <p>Ingredients: {foods.ingredients_text}</p>
-            <p>Brands: {foods.brands}</p>
-            {/* Add more details as needed */}
-          </div>
-        )}
-      </div>
-    </div>
+
+      <Text size="12px" fontWeight="bold" textAlign="start" marginLeft="5px">
+        Popular Ones
+      </Text>
+
+      {loading ? (
+        <Box padding="20px" textAlign="center">
+          Loading...
+        </Box>
+      ) : (
+        <Box padding="20px">
+          {data?.map((item) => (
+            <div key={item.restaurant_id}>
+              <CardCompToDis {...item} />
+            </div>
+          ))}
+        </Box>
+      )}
+    </>
   );
-}
+};
 
 export default HomePage;
